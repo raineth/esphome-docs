@@ -41,9 +41,9 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Required if using more than one ``atm90e32`` chip with buttons for calibration, reference voltage/current fields, and phase status fields
 - **phase_a** (*Optional*): The configuration options for the 1st phase.
 
-  - **voltage** (*Optional*): Use the voltage value of this phase in volts (RMS).
+  - **voltage** (*Optional*): Use the voltage value of this phase in volts :abbr:RMS (root mean square).
     All options from :ref:`Sensor <config-sensor>`.
-  - **current** (*Optional*): Use the current value of this phase in amperes. All options from
+  - **current** (*Optional*): Use the current value of this phase in amperes :abbr:RMS (root mean square). All options from
     :ref:`Sensor <config-sensor>`.
   - **power** (*Optional*): Use the power value on this phase in watts. All options from
     :ref:`Sensor <config-sensor>`.
@@ -53,9 +53,15 @@ Configuration variables:
     :ref:`Sensor <config-sensor>`.
   - **power_factor** (*Optional*): Use the power factor value on this phase. All options from
     :ref:`Sensor <config-sensor>`.
-  - **phase_angle** (*Optional*): Use the phase angle value on this phase in degrees. All options from
+  - **phase_angle** (*Optional*): Use the current phase angle value on this phase in degrees. All options from
+    :ref:`Sensor <config-sensor>`.
+  - **voltage_phase_angle** (*Optional*): Use the voltage phase angle value on this phase in degrees. Note that some
+    devices (like the CircuitSetup 6-Channel board) connect the same voltage reference to all 3 phase inputs of a
+    single chip, and on such a device this sensor will always read 0. All options from
     :ref:`Sensor <config-sensor>`.
   - **peak_current** (*Optional*): Use the peak current value on this phase in amperes. All options from
+    :ref:`Sensor <config-sensor>`.
+  - **fundamental_power** (*Optional*): Use the fundamental power value on this phase. All options from
     :ref:`Sensor <config-sensor>`.
   - **harmonic_power** (*Optional*): Use the harmonic power value on this phase. All options from
     :ref:`Sensor <config-sensor>`.
@@ -78,6 +84,8 @@ Configuration variables:
 
 - **phase_b** (*Optional*): The configuration options for the 2nd phase. Same options as ``phase_a``.
 - **phase_c** (*Optional*): The configuration options for the 3rd phase. Same options as ``phase_a``.
+- **neutral_current** (*Optional*): Use the :abbr:RMS (root mean square) neutral current value calculated by the meter. This value is RMS(Ia + Ib + Ic).
+  All options from :ref:`Sensor <config-sensor>`.
 - **frequency** (*Optional*): Use the frequency value calculated by the meter. All options from
   :ref:`Sensor <config-sensor>`.
 - **peak_current_signed** (*Optional*, boolean): Control the peak current output as signed or absolute. Defaults to ``false``.
@@ -366,11 +374,11 @@ If a multi board stack is being used, remember to cut JP12/13 on all boards and 
 fed to all boards through the stacking headers. Another detail is that each voltage transformer needs to have the
 same polarity; getting this backwards will be just like having it on the wrong phase.
 
-Note that the current measurement is the RMS value so is always positive. They only way to determine direction is to
-look at the power factor. If there are only largely resistive loads and no power sources, (PF almost 1), it is simpler
-to just create a template sensor that computes power from Irms*Vrms and ignore all these details. On the other
-hand, one might be surprised how reactive some loads are and the CirciuitSetup designs are able to
-handle these situations well.
+Note that the current measurement is the :abbr:RMS (root mean square) value so is always positive.  They only way to
+determine direction is to look at the power factor.  If there are only largely resistive loads and no power sources,
+(PF almost 1), it is simpler to just create a template sensor that computes power from Irms*Vrms and ignore all these
+details.  On the other hand, one might be surprised how reactive some loads are and the CirciuitSetup designs are able
+to handle these situations well.
 
 Harmonic Power
 --------------
