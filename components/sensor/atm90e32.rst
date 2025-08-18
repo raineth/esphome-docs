@@ -41,9 +41,9 @@ Configuration variables:
 - **id** (*Optional*, :ref:`config-id`): Required if using more than one ``atm90e32`` chip with buttons for calibration, reference voltage/current fields, and phase status fields
 - **phase_a** (*Optional*): The configuration options for the 1st phase.
 
-  - **voltage** (*Optional*): Use the voltage value of this phase in volts :abbr:RMS (root mean square).
+  - **voltage** (*Optional*): Use the voltage value of this phase in volts :abbr:`RMS (root mean square)`.
     All options from :ref:`Sensor <config-sensor>`.
-  - **current** (*Optional*): Use the current value of this phase in amperes :abbr:RMS (root mean square). All options from
+  - **current** (*Optional*): Use the current value of this phase in amperes :abbr:`RMS (root mean square)`. All options from
     :ref:`Sensor <config-sensor>`.
   - **power** (*Optional*): Use the power value on this phase in watts. All options from
     :ref:`Sensor <config-sensor>`.
@@ -84,8 +84,9 @@ Configuration variables:
 
 - **phase_b** (*Optional*): The configuration options for the 2nd phase. Same options as ``phase_a``.
 - **phase_c** (*Optional*): The configuration options for the 3rd phase. Same options as ``phase_a``.
-- **neutral_current** (*Optional*): Use the :abbr:RMS (root mean square) neutral current value calculated by the meter. This value is RMS(Ia + Ib + Ic).
-  All options from :ref:`Sensor <config-sensor>`.
+- **neutral_current** (*Optional*): Use the :abbr:`RMS (root mean square)` neutral current value calculated by the
+  meter. This value is RMS(Ia + Ib + Ic). This register is only meaningful if you are monitoring all the phases of a
+  single circuit on the same ATM90E32. All options from :ref:`Sensor <config-sensor>`.
 - **frequency** (*Optional*): Use the frequency value calculated by the meter. All options from
   :ref:`Sensor <config-sensor>`.
 - **peak_current_signed** (*Optional*, boolean): Control the peak current output as signed or absolute. Defaults to ``false``.
@@ -374,7 +375,7 @@ If a multi board stack is being used, remember to cut JP12/13 on all boards and 
 fed to all boards through the stacking headers. Another detail is that each voltage transformer needs to have the
 same polarity; getting this backwards will be just like having it on the wrong phase.
 
-Note that the current measurement is the :abbr:RMS (root mean square) value so is always positive.  They only way to
+Note that the current measurement is the :abbr:`RMS (root mean square)` value so is always positive.  They only way to
 determine direction is to look at the power factor.  If there are only largely resistive loads and no power sources,
 (PF almost 1), it is simpler to just create a template sensor that computes power from Irms*Vrms and ignore all these
 details.  On the other hand, one might be surprised how reactive some loads are and the CirciuitSetup designs are able
